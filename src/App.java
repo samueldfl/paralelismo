@@ -7,7 +7,7 @@ import java.util.Random;
 public class App {
     public static void main(String[] args) throws Exception {
         final String fileName = "input.txt";
-        boolean generateRandomNumber = true;
+        boolean generateRandomNumber = false;
 
         if (generateRandomNumber) {
             generateRandomNumbersToFile(400_000, 1, 599_999, fileName);
@@ -15,23 +15,7 @@ public class App {
 
         int[] arr = readNumbersFromFile(fileName);
 
-        // serial(arr);
-        // parallel(arr);
-
-        int numThreads = 4;
-        int numSubarrays = 200;
-
-        final long start1 = System.nanoTime();
-        BubleSort.sortAsync(arr, numThreads, numSubarrays);
-        final long end1 = System.nanoTime();
-
-        System.out.println("TEMPO PARALELO: " + nanoToSeconds(start1, end1));
-
-        final long start2 = System.nanoTime();
-        BubleSort.sort(arr);
-        final long end2 = System.nanoTime();
-        System.out.println("TEMPO SERIAl: " + nanoToSeconds(start2, end2));
-
+        serial(arr);
     }
 
     public static void serial(int[] arr) {
